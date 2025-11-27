@@ -24,6 +24,8 @@ class SecurityConfig(
                 auth
                     .requestMatchers("/")
                     .permitAll()
+                    .requestMatchers("/onboarding")
+                    .permitAll()
                     .requestMatchers("/notes")
                     .permitAll()
                     .requestMatchers("/auth/**")

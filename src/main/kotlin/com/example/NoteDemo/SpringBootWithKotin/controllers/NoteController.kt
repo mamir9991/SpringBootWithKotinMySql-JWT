@@ -2,13 +2,10 @@ package com.example.NoteDemo.SpringBootWithKotin.controllers
 
 import com.example.NoteDemo.SpringBootWithKotin.model.Note
 import com.example.NoteDemo.SpringBootWithKotin.services.NoteService
-import jakarta.websocket.server.PathParam
 import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.util.random.RandomGenerator.StreamableGenerator
-import java.util.random.RandomGenerator as RandomGenerator1
+
 
 @RestController
 @RequestMapping("/notes")
