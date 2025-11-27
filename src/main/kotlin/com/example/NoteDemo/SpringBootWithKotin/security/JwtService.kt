@@ -68,6 +68,7 @@ class JwtService(
             HttpStatusCode.valueOf(401),
             "Invalid token."
         )
+        println("getUserIdFromToken () ${claims.subject}")
         return claims.subject
     }
 

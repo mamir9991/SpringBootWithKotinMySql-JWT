@@ -1,7 +1,6 @@
-package com.example.NoteDemo.SpringBootWithKotin.dataSource
+package com.example.NoteDemo.SpringBootWithKotin.dataSource.login
 
 import com.example.NoteDemo.SpringBootWithKotin.model.RefreshToken
-import com.example.NoteDemo.SpringBootWithKotin.model.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

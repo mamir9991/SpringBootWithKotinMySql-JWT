@@ -1,6 +1,6 @@
-package com.example.NoteDemo.SpringBootWithKotin.services
+package com.example.NoteDemo.SpringBootWithKotin.services.login
 
-import com.example.NoteDemo.SpringBootWithKotin.dataSource.UserRepository
+import com.example.NoteDemo.SpringBootWithKotin.dataSource.login.UserRepository
 import com.example.NoteDemo.SpringBootWithKotin.model.User
 import org.springframework.stereotype.Service
 

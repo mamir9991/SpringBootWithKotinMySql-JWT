@@ -1,10 +1,9 @@
-package com.example.NoteDemo.SpringBootWithKotin.controllers
+package com.example.NoteDemo.SpringBootWithKotin.controllers.login
 
-import com.example.NoteDemo.SpringBootWithKotin.services.AuthService
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import com.example.NoteDemo.SpringBootWithKotin.services.login.AuthService
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/auth")
@@ -26,12 +25,21 @@ class AuthController(
         val refreshToken: String
     )
 
+
+    @ExceptionHandler(ResponseStatusException::class)
+    fun handleResponseStatusException(ex: ResponseStatusException): ResponseEntity<Map<String, String>> {
+        return ResponseEntity(
+            mapOf("status" to "${ex.reason}", "statusCode" to "${ex.statusCode}"),
+            ex.statusCode
+        )
+    }
+
     @PostMapping("/register")
     fun register(
-       // @Valid @RequestBody body: AuthRequest
+        // @Valid @RequestBody body: AuthRequest
         @RequestBody body: AuthRequest
-    ) {
-        authService.register(body.email, body.password,body.name?:"")
+    ): ResponseEntity<Any> {
+        return authService.register(body.email, body.password, body.name ?: "")
     }
 
     @PostMapping("/login")

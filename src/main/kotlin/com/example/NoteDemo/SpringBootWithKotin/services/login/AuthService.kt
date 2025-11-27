@@ -1,7 +1,7 @@
-package com.example.NoteDemo.SpringBootWithKotin.services
+package com.example.NoteDemo.SpringBootWithKotin.services.login
 
-import com.example.NoteDemo.SpringBootWithKotin.dataSource.RefreshTokenRepository
-import com.example.NoteDemo.SpringBootWithKotin.dataSource.UserRepository
+import com.example.NoteDemo.SpringBootWithKotin.dataSource.login.RefreshTokenRepository
+import com.example.NoteDemo.SpringBootWithKotin.dataSource.login.UserRepository
 import com.example.NoteDemo.SpringBootWithKotin.model.RefreshToken
 import com.example.NoteDemo.SpringBootWithKotin.model.User
 import com.example.NoteDemo.SpringBootWithKotin.security.HashEncoder
@@ -9,6 +9,7 @@ import com.example.NoteDemo.SpringBootWithKotin.security.JwtService
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatusCode
+import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -29,17 +30,20 @@ class AuthService(
         val refreshToken: String
     )
 
-    fun register(email: String, password: String,name: String): User {
+    fun register(email: String, password: String, name: String): ResponseEntity<Any> {
         val user = userRepository.findByEmail(email.trim())
-        if(user != null) {
+        if (user != null) {
             throw ResponseStatusException(HttpStatus.CONFLICT, "A user with that email already exists.")
         }
-        return userRepository.save(
+        val savedUser = userRepository.save(
             User(
                 name = name,
                 email = email,
                 password = hashEncoder.encode(password)
             )
+        )
+        return ResponseEntity.ok(
+            mapOf("message" to "User registered successfully", "user" to savedUser)
         )
     }
 

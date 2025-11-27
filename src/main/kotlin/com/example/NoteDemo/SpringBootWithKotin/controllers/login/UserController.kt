@@ -1,7 +1,7 @@
-package com.example.NoteDemo.SpringBootWithKotin.controllers
+package com.example.NoteDemo.SpringBootWithKotin.controllers.login
 
 import com.example.NoteDemo.SpringBootWithKotin.model.User
-import com.example.NoteDemo.SpringBootWithKotin.services.UserService
+import com.example.NoteDemo.SpringBootWithKotin.services.login.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
